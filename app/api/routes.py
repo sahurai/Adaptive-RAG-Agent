@@ -1,5 +1,4 @@
 import os
-import shutil
 from typing import Optional
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from langchain_core.messages import HumanMessage
@@ -22,7 +21,6 @@ async def upload_document(
     3. Cleans up the temporary file.
     """
     temp_dir = "temp_uploads"
-    # FIX: Initialize file_path to None to avoid UnboundLocalError in the except block
     file_path: Optional[str] = None
 
     try:
@@ -34,8 +32,9 @@ async def upload_document(
 
         # Write the uploaded file to disk
         # We use 'wb' (write binary) which is standard for saving uploads
-        with open(file_path, "wb") as f:
-            shutil.copyfileobj(file.file, f)
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
 
         # Run the ingestion logic (The Pink Node in the architecture)
         # This splits the PDF and saves it to ChromaDB
@@ -53,7 +52,6 @@ async def upload_document(
 
     except Exception as e:
         # Cleanup in case of error
-        # FIX: Check if file_path was assigned and exists before trying to remove it
         if file_path and os.path.exists(file_path):
             os.remove(file_path)
 

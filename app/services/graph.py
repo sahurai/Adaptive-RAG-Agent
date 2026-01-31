@@ -101,4 +101,5 @@ workflow.add_conditional_edges(
 # Initialize memory
 memory = MemorySaver()
 
+# Compile graph
 app_graph = workflow.compile(checkpointer=memory)

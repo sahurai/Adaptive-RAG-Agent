@@ -32,7 +32,12 @@ app.include_router(router, prefix="/api")
 @app.get("/")
 def health_check():
     """Simple health check endpoint."""
-    return {"status": "running", "service": "Adaptive RAG Agent", "version": "1.0.0", "docs": "http://127.0.0.1:8000/docs"}
+    return {
+        "status": "running",
+        "service": "Adaptive RAG Agent",
+        "version": "1.0.0",
+        "docs": "http://127.0.0.1:8000/docs"
+    }
 
 if __name__ == "__main__":
     # Reset all temp files

@@ -132,7 +132,6 @@ def generate_node(state: AgentState):
         "messages": messages
     })
 
-
     return {
         "generation": generation,
         "messages": [AIMessage(content=generation)]
