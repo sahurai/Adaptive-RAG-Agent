@@ -1,14 +1,10 @@
 # Adaptive RAG Agent API
 
----
-
 ## Overview
 
 This project implements an advanced **Adaptive Retrieval-Augmented Generation (RAG)** agent using **FastAPI** and **LangGraph**. Unlike static RAG pipelines, this agent employs a cognitive architecture that dynamically selects data sources, optimizes retrieval through query translation and fusion, and verifies its own outputs using self-reflection mechanisms.
 
 The system is designed as a **stateless, ephemeral** service. All uploaded documents, vector indices, and conversation history are stored exclusively in memory and are permanently purged upon server restart, ensuring strict data privacy and a clean state for development.
-
----
 
 ## Workflow Architecture
 
@@ -22,8 +18,6 @@ The request processing pipeline consists of the following nodes:
 4. **Web Search Node:** (If Web Search selected or Fallback triggered) Queries Tavily for external information.
 5. **Generate Node:** Synthesizes an answer using the context (from Vectorstore or Web) and the conversation history.
 6. **Hallucination Check Node:** Validates the answer. If the answer is not grounded in facts, it triggers a feedback loop to the Web Search node for correction.
-
----
 
 ## Core Features
 
@@ -49,8 +43,6 @@ The workflow includes two critical quality control loops:
 
 * **Document Grading:** Before generation, retrieved documents are evaluated for relevance. Irrelevant chunks are discarded. If no relevant documents remain, the system falls back to a web search.
 * **Hallucination Check:** After generation, a separate evaluator verifies if the answer is grounded in the provided facts. If a hallucination is detected, the agent initiates a retry loop (up to 3 times) using web search to correct the error.
-
----
 
 ## Technical Stack
 
