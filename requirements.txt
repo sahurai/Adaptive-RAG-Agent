@@ -1,0 +1,16 @@
+fastapi~=0.128.0
+uvicorn~=0.40.0
+langchain
+langchain-openai~=1.1.7
+langchain-community~=0.4.1
+langgraph~=1.0.7
+chromadb
+tavily-python
+pypdf
+python-multipart
+python-dotenv~=1.2.1
+pydantic~=2.12.5
+langchain-text-splitters~=1.1.0
+langchain-core~=1.2.7
+pydantic-settings~=2.12.0
+langchain-google-genai~=4.2.0
